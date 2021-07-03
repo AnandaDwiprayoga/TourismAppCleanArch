@@ -2,8 +2,7 @@ package com.dicoding.tourismapp.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.dicoding.tourismapp.core.domain.usecase.TourismUseCase
-import dagger.hilt.android.HiltAndroidApp
+import id.pasukanlangit.core.domain.usecase.TourismUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
