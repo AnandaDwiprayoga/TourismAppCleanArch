@@ -1,26 +1,38 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.dynamic-feature'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+
 }
 
 apply from : '../shared_depedencies.gradle'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.dicoding.tourismapp"
-        minSdkVersion 16
+        applicationId "id.pasukanlangit.maps"
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 
     buildTypes {
@@ -29,24 +41,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    buildFeatures {
-        viewBinding = true
-    }
-    dynamicFeatures = [':maps']
-
 }
-
 
 dependencies {
-    implementation project(":core")
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-}
+    api project(":app")
+    api project(":core")
 
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.4.6'
+}
