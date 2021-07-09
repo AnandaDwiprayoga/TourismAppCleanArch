@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,6 +19,13 @@ import javax.inject.Singleton
 object NetworkModule {
 
 
+    val hostname = "tourism-api.dicoding.dev"
+    val certificatePinner = CertificatePinner.Builder()
+        .add(hostname, "sha256/R1H6l4jM+/HBDx6jZNticZim+NHBsQYOpO5t/6pJa4=")
+        .add(hostname, "sha256/cXjPgKdVe6iojP8s0YQJ3rtmDFHTnYZxcYvmYGFiYME=")
+        .add(hostname, "sha256/hxqRlPTu1bMS/0DITB1SSu0vd4u/8l8TjPgfaAp63Gc=")
+        .build()
+
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient =
@@ -25,6 +33,7 @@ object NetworkModule {
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
+            .certificatePinner(certificatePinner)
             .build()
 
     @Singleton
