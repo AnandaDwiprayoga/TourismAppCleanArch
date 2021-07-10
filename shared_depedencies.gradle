@@ -17,6 +17,9 @@ dependencies {
 
     implementation "com.airbnb.android:lottie:$lottie_version"
 
+    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
+
+
     api "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 }
