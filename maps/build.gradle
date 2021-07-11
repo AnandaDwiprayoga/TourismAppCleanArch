@@ -48,4 +48,8 @@ dependencies {
     api project(":core")
 
     implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.4.6'
+
+    implementation "com.mapbox.mapboxsdk:mapbox-android-sdk:$mapbox_version"
+    implementation "com.mapbox.mapboxsdk:mapbox-android-plugin-annotation-v9:$mapbox_annotation_version"
+
 }
